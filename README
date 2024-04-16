@@ -1,0 +1,3 @@
+My second SPL assignment which is the SET! game, we coded this using Java with concurrent code all along. everything we did was synchroniized 
+partially which made the game run really really fast, we also included a computer player function which allows as many AI players as you want.
+got a full score on this assignment.

@@ -1,0 +1,36 @@
+BONUS CHALLENGE FORM
+--------------------
+
+For each bonus challenge you have implemented, please replace the sentence "We are not entitled to this bonus."
+with a short description of:
+
+1. How it was implemented in your code
+2. Where it was used (in which class methods).
+3. How you tested that it is working correctly.
+
+--------------------
+
+1. Fully supporting all configuration fields and avoiding the use of magic numbers
+in every instance where we wanted to use field values from the config file, we used the env.config.field to ensure that we are getting the latest version in the config file with no mistakes. 
+we used the fields in Dealer, Player and Table. 
+to check that our intuition is right, we changed the config file field values to see if everthing went how we expected it to get(changed the freeze time, etc..).
+
+--------------------
+
+2. Terminating all threads (that you created) gracefully and in reverse order to the order they were created in.
+we stored the threads in an array such that when we terminate threads from the game, we do so starting from the end of the array- we implemented that in the terminate function in the Dealer class.
+for each thread, we did the termination process according to what we did in the class function itself.
+we checked the results of these actions by entering different forms of players into the config , while checking if once we terminate the threads, they appear in FIFO order in the log file. it worked like we wanted it to work.
+
+--------------------
+
+3. Handling the config.turnTimeoutMillis value as follows:
+config.turnTimeoutMillis < 0: display nothing.
+config.turnTimeoutMillis = 0: display a timer since the last action (reshuffle or set collected).
+Note: in modes without a countdown timer the dealer must ensure there is always at least one legal set on the table.
+
+
+we handled the config requirements using the .take() function that is a member of the blockingQueue class.  this function waits for the player to enter a key press then takes it.
+after that, the player waits for a response from the dealer again using the take() function.
+the dealer then waits either for the player to send a set to be checked by the dealer of waits for a second to change the timer value.
+to check that all of this worked, we changed field values in the config file and looked at how everything played out as it was supposed to. 
